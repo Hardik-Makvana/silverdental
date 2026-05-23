@@ -40,7 +40,7 @@ export default function AdminDashboard() {
       <div style={{ overflowX: 'auto' }}><table style={{ width: '100%', borderCollapse: 'collapse' }}>
         <thead><tr>{['Patient','Phone','Service','Date','Status'].map(h => <th key={h} style={{ textAlign: 'left', padding: '1rem 1.5rem', fontSize: '0.75rem', fontWeight: 700, color: '#6C757D', textTransform: 'uppercase', background: '#F4F7F9', borderBottom: '1px solid #E9ECEF' }}>{h}</th>)}</tr></thead>
         <tbody>{recent.length === 0 ? <tr><td colSpan={5} style={{ padding: '2.5rem', textAlign: 'center', color: '#ADB5BD' }}>No appointments</td></tr> :
-          recent.map(a => (<tr key={a._id} style={{ transition: 'background 0.2s', ':hover': { background: '#F8FAFB' } }}><td style={{ padding: '1rem 1.5rem', borderBottom: '1px solid #E9ECEF', fontSize: '0.9rem', color: '#343A40' }}><strong>{a.name}</strong></td>
+          recent.map(a => (<tr key={a._id} style={{ transition: 'background 0.2s' }}><td style={{ padding: '1rem 1.5rem', borderBottom: '1px solid #E9ECEF', fontSize: '0.9rem', color: '#343A40' }}><strong>{a.name}</strong></td>
             <td style={{ padding: '1rem 1.5rem', borderBottom: '1px solid #E9ECEF', fontSize: '0.9rem', color: '#495057' }}>{a.phone}</td>
             <td style={{ padding: '1rem 1.5rem', borderBottom: '1px solid #E9ECEF', fontSize: '0.9rem', color: '#495057' }}>{a.service}</td>
             <td style={{ padding: '1rem 1.5rem', borderBottom: '1px solid #E9ECEF', fontSize: '0.9rem', color: '#495057' }}>{new Date(a.date).toLocaleDateString('en-IN')}</td>
