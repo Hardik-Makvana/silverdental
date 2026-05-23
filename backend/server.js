@@ -227,6 +227,21 @@ const startServer = async () => {
     // Connect to MongoDB
     await connectDB();
 
+    // Auto-seed admin user if database is empty
+    const User = require('./models/User');
+    const { ADMIN_EMAIL, ADMIN_PASSWORD } = require('./config/env');
+    const userCount = await User.countDocuments();
+    if (userCount === 0) {
+      console.log('⚠️ No users found in database. Seeding default admin user...');
+      await User.create({
+        name: 'Admin',
+        email: ADMIN_EMAIL,
+        password: ADMIN_PASSWORD,
+        role: 'superadmin'
+      });
+      console.log(`✅ Default admin created: ${ADMIN_EMAIL}`);
+    }
+
     // Start listening
     const server = app.listen(PORT, () => {
       console.log('==========================================');
