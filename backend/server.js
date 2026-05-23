@@ -42,6 +42,7 @@ const uploadRoutes = require('./routes/upload');
 // Initialize Express App
 // ==========================================
 const app = express();
+app.set('trust proxy', 1); // Trust first proxy (needed for secure cookies on Render/Heroku)
 
 // ==========================================
 // Security Middleware
