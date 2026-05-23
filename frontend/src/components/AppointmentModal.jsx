@@ -53,7 +53,7 @@ export default function AppointmentModal() {
     setError('');
     
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const API_BASE = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000').replace(/\/+$/, '');
       const res = await fetch(`${API_BASE}/api/appointments`, { 
         method: 'POST', 
         headers: { 'Content-Type': 'application/json' }, 

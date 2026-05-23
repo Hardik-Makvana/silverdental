@@ -17,7 +17,7 @@ export default function Appointment() {
     if (!formData.name || !formData.phone || !formData.service || !formData.date) { setError('Please fill in all required fields.'); return; }
     setLoading(true); setError('');
     try {
-      const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const API_BASE = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000').replace(/\/+$/, '');
       const res = await fetch(`${API_BASE}/api/appointments`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || 'Something went wrong');

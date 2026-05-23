@@ -38,7 +38,7 @@ export default function FAQ() {
   useEffect(() => {
     const fetchFaqs = async () => {
       try {
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+        const API_BASE = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000').replace(/\/+$/, '');
         const res = await fetch(`${API_BASE}/api/faqs`);
         const data = await res.json();
         if (data.success && data.data && data.data.length > 0) {
