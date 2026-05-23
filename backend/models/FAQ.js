@@ -1,0 +1,40 @@
+/**
+ * FAQ Model
+ * Frequently asked questions, categorized and orderable.
+ */
+
+const mongoose = require('mongoose');
+
+const FAQSchema = new mongoose.Schema({
+  question: {
+    type: String,
+    required: [true, 'Question is required'],
+    trim: true,
+    maxlength: [500, 'Question cannot exceed 500 characters'],
+  },
+  answer: {
+    type: String,
+    required: [true, 'Answer is required'],
+    trim: true,
+    maxlength: [2000, 'Answer cannot exceed 2000 characters'],
+  },
+  category: {
+    type: String,
+    trim: true,
+    default: 'general',
+  },
+  order: {
+    type: Number,
+    default: 0,
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+module.exports = mongoose.model('FAQ', FAQSchema);
