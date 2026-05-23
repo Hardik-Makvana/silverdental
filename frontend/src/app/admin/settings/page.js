@@ -63,6 +63,38 @@ export default function SettingsPage() {
       <textarea style={{ ...inp, minHeight: 120 }} value={clinic.aboutText||''} onChange={e => upd('aboutText', e.target.value)} />
     </div>
 
+    <div style={{ background: 'white', borderRadius: 16, padding: '2rem', marginBottom: '1.5rem', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
+      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', marginBottom: '1.25rem', paddingBottom: '0.75rem', borderBottom: '1px solid #EEF2F5' }}>⏰ Working Hours</h3>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+        {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(day => {
+          const wh = clinic.workingHours?.find(w => w.day === day) || { day, isOpen: false, hours: 'Closed' };
+          const updateWh = (field, val) => {
+            const arr = clinic.workingHours || [];
+            const existingIdx = arr.findIndex(w => w.day === day);
+            const newWh = { ...wh, [field]: val };
+            let newArr;
+            if (existingIdx >= 0) {
+              newArr = [...arr];
+              newArr[existingIdx] = newWh;
+            } else {
+              newArr = [...arr, newWh];
+            }
+            upd('workingHours', newArr);
+          };
+          return (
+            <div key={day} style={{ display: 'grid', gridTemplateColumns: '120px 80px 1fr', gap: '1rem', alignItems: 'center' }}>
+              <div style={{ fontWeight: 600, fontSize: '0.9rem', color: '#2C3E50' }}>{day}</div>
+              <label style={{ display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', fontSize: '0.85rem' }}>
+                <input type="checkbox" checked={wh.isOpen} onChange={e => updateWh('isOpen', e.target.checked)} />
+                Open
+              </label>
+              <input style={{ ...inp, opacity: wh.isOpen ? 1 : 0.5 }} value={wh.hours} disabled={!wh.isOpen} onChange={e => updateWh('hours', e.target.value)} placeholder="e.g. 10:00 AM - 08:00 PM" />
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
     <button onClick={handleSave} disabled={saving} style={{ ...btn('linear-gradient(135deg,#1B6B93,#0F4C6B)', 'white'), padding: '0.85rem 2.5rem', fontSize: '1rem', opacity: saving ? 0.7 : 1 }}>{saving ? 'Saving...' : '💾 Save Settings'}</button>
   </div>);
 }
