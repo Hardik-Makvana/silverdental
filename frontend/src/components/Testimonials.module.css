@@ -1,0 +1,257 @@
+.section {
+  padding: var(--space-20) 0;
+  background: var(--gray-50);
+  position: relative;
+  overflow: hidden;
+}
+
+.headerLayout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: var(--space-12);
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+.headerText {
+  max-width: 600px;
+}
+
+.googleOverallBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: var(--white);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 4px 15px rgba(0, 90, 156, 0.08);
+  border: 1px solid rgba(0, 90, 156, 0.05);
+  transition: transform var(--transition-base);
+}
+
+.googleOverallBadge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 90, 156, 0.12);
+}
+
+.googleIconLarge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.googleOverallInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.googleOverallRating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.googleOverallRating strong {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--gray-900);
+  line-height: 1;
+}
+
+.googleOverallText {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  margin-top: 4px;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.carouselWrapper {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.slideItem {
+  box-sizing: border-box;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.carousel {
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  padding: var(--space-2) 0 var(--space-4); /* Space for shadows */
+}
+
+.track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reviewCard {
+  width: 100%;
+  padding: 0 var(--space-3);
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.innerCard {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0, 90, 156, 0.05);
+  border: 1px solid rgba(0, 90, 156, 0.05);
+  transition: all var(--transition-base);
+}
+
+.innerCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 90, 156, 0.1);
+  border-color: rgba(0, 90, 156, 0.15);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.headerInfo {
+  flex: 1;
+}
+
+.patientName {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 2px;
+}
+
+.reviewDate {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+}
+
+.googleIconSm {
+  opacity: 0.8;
+}
+
+.ratingRow {
+  margin-bottom: var(--space-3);
+}
+
+.reviewContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewText {
+  font-size: 0.95rem;
+  color: var(--gray-700);
+  line-height: 1.6;
+  margin-bottom: var(--space-2);
+}
+
+.readMoreBtn {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0;
+  text-align: left;
+  margin-top: auto;
+  align-self: flex-start;
+  transition: color var(--transition-fast);
+}
+
+.readMoreBtn:hover {
+  color: var(--primary-light);
+  text-decoration: underline;
+}
+
+.navControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  margin-top: var(--space-10);
+}
+
+.navBtn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-600);
+  transition: all var(--transition-base);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.navBtn:hover {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 90, 156, 0.2);
+  transform: scale(1.05);
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gray-300);
+  transition: all var(--transition-base);
+  padding: 0;
+}
+
+.dotActive {
+  background: var(--primary);
+  width: 24px;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .headerLayout {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

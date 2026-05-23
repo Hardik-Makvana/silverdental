@@ -1,0 +1,132 @@
+.section {
+  padding: var(--space-20) 0;
+  background-color: var(--white);
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: stretch;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.card {
+  background: var(--white);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 10px 30px rgba(0, 90, 156, 0.08);
+  border: 1px solid rgba(0, 90, 156, 0.05);
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 90, 156, 0.12);
+  border-color: rgba(0, 90, 156, 0.2);
+}
+
+.cardIcon {
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: var(--space-4);
+  box-shadow: 0 8px 15px rgba(0, 90, 156, 0.2);
+}
+
+.card h4 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--gray-900);
+  margin-bottom: var(--space-2);
+  font-weight: 700;
+}
+
+.card p, .card a {
+  color: var(--gray-600);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.card a:hover {
+  color: var(--primary);
+}
+
+.card strong {
+  color: var(--gray-800);
+}
+
+.mapWrapper {
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 90, 156, 0.15);
+  border: 4px solid var(--white);
+  height: 100%;
+  min-height: 400px;
+  position: relative;
+}
+
+.mapWrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: var(--radius-2xl);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .mapWrapper {
+    height: 400px;
+  }
+}
+
+@media (max-width: 500px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
