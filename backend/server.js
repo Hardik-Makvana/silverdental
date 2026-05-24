@@ -141,6 +141,37 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+/**
+ * @route   GET /api/test-email
+ * @desc    Test email configuration
+ * @access  Public
+ */
+app.get('/api/test-email', async (req, res) => {
+  try {
+    const { sendEmail } = require('./services/email');
+    const { ADMIN_EMAIL_TO } = require('./config/env');
+    
+    if (!ADMIN_EMAIL_TO) {
+      return res.status(400).json({ success: false, error: 'ADMIN_EMAIL_TO is not set' });
+    }
+
+    const result = await sendEmail({
+      to: ADMIN_EMAIL_TO,
+      subject: 'Silver Smile Dental - Test Email',
+      text: 'If you are reading this, your email configuration is working perfectly!',
+      html: '<h3>If you are reading this, your email configuration is working perfectly!</h3>'
+    });
+
+    if (result) {
+      res.status(200).json({ success: true, message: 'Email sent successfully!', result });
+    } else {
+      res.status(500).json({ success: false, error: 'sendEmail returned null. Check backend logs for the exact SMTP error.' });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message, stack: error.stack });
+  }
+});
+
 // ==========================================
 // 404 Handler
 // ==========================================

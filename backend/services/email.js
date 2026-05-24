@@ -71,7 +71,7 @@ const sendEmail = async (options) => {
     return info;
   } catch (error) {
     console.error(`❌ Email send failed: ${error.message}`);
-    return null;
+    throw error;
   }
 };
 
