@@ -19,15 +19,25 @@ let transporter = null;
 
 if (EMAIL_USER && EMAIL_PASS) {
   try {
-    transporter = nodemailer.createTransport({
-      host: EMAIL_HOST,
-      port: parseInt(EMAIL_PORT, 10),
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: EMAIL_USER,
-        pass: EMAIL_PASS,
-      },
-    });
+    if (EMAIL_HOST === 'smtp.gmail.com') {
+      transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: EMAIL_USER,
+          pass: EMAIL_PASS,
+        },
+      });
+    } else {
+      transporter = nodemailer.createTransport({
+        host: EMAIL_HOST,
+        port: parseInt(EMAIL_PORT, 10),
+        secure: parseInt(EMAIL_PORT, 10) === 465,
+        auth: {
+          user: EMAIL_USER,
+          pass: EMAIL_PASS,
+        },
+      });
+    }
     console.log('✅ Email service initialized');
   } catch (error) {
     console.warn('⚠️  Email transporter creation failed:', error.message);
